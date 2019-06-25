@@ -1,0 +1,62 @@
+{% if is_granted('ROLE_SUPER_ADMIN') %}
+<aside id="sidebar-right" class="sidebar-right" data-loading-overlay="" data-loading-overlay-options='{ "startShowing": false }'>
+
+    <div class="loading-overlay" style="background-color: rgb(0, 0, 0); z-index: 999; opacity: 0.5">
+        <div class="bounce-loader">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div class="nano">
+        <div class="nano-content">
+            <a href="#" class="mobile-close d-md-none">
+                Collapse <i class="fas fa-chevron-right"></i>
+            </a>
+
+            <div class="sidebar-right-wrapper">
+
+                <div class="sidebar-widget">
+                    <h6>Gestion des droits - {{ title }}</h6>
+
+                    <hr class="separator">
+
+
+                    {% for rulesGroup in rulesGroups %}
+
+                        <div class="sidebar-widget widget-collapsed mb-3">
+                            <div class="widget-header widget-group1">
+                                <h6>{{ rulesGroup.group.name }}</h6>
+                                <div class="widget-toggle">+</div>
+                            </div>
+                            <div class="widget-content mb-3" style="">
+                                <div class="form-horizontal form-bordered" method="get">
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+
+                                            {% for rule in rulesGroup.rules %}
+                                                <div class="checkbox-custom checkbox-dark">
+                                                    <input autocomplete="off" name="checkbox{{ rulesGroup.group.id }}_{{ rule.value }}" data-rule-value="{{ rule.value }}" data-group-id="{{ rulesGroup.group.id }}" type="checkbox" {% if rule.checked %}checked=""{% endif %} id="checkbox{{ rulesGroup.group.id }}_{{ rule.value }}">
+                                                    <label for="checkbox{{ rulesGroup.group.id }}_{{ rule.value }}">{{ rule.title }}</label>
+                                                </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                    <input type="hidden" value="{{ acl }}" id="acl" />
+                    <button type="button" class="mb-1 mt-1 mr-1 btn btn-dark" id="rules_update_button"></i> Enregistrer</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</aside>
+{% endif %}

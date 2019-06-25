@@ -1,0 +1,81 @@
+<!doctype html>
+<html class="fixed">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <title>{% block title %}LSPD - Panel Admin{% endblock %}</title>
+    <meta name="keywords" content="HTML5 Admin Template" />
+    <meta name="description" content="Porto Admin - Responsive HTML5 Template">
+    <meta name="author" content="okler.net">
+
+    <link rel="shortcut icon" href="{{ asset('build/images/favicon.ico') }}" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('build/images/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('build/images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('build/images/favicon-16x16.png') }}">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('admin') }}
+    {% endblock %}
+
+    <script src="{{ asset('build/modernizr/modernizr.js') }}"></script>
+
+</head>
+<body>
+
+{% block body %}
+
+    <section class="body">
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="notify invisible" data-type="{{ label }}">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+
+        {% block header %}
+            {% include 'admin/common/header.html.twig' %}
+        {% endblock %}
+
+        <div class="inner-wrapper">
+            {% block left_sidebar %}
+                {% include 'admin/menu/left_sidebar.html.twig' %}
+            {% endblock %}
+
+            <section role="main" class="content-body">
+
+                {% block breadcrumbs %}
+                    {% include 'admin/common/breadcrumbs.html.twig' with {page_title: block('page_title')} %}
+                    {% if false %}{% block page_title %}{% endblock %}{% endif %}
+                {% endblock %}
+
+                <!-- start: page -->
+
+                {% block content %}{% endblock %}
+
+                <!-- end: page -->
+
+            </section>
+        </div>
+
+        {% block right_sidebar %}{% endblock %}
+
+    </section>
+
+    {% block modals %}{% endblock %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('admin') }}
+{% endblock %}
+
+</body>
+</html>

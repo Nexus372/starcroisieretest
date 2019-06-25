@@ -1,0 +1,94 @@
+{% extends 'knp_menu.html.twig' %}
+{% trans_default_domain 'admin' %}
+
+{% block list %}
+    {% if item.parent %}
+        {% set ulClass = {'class': 'nav nav-children'} %}
+    {% else %}
+        {% set ulClass = {'class': 'nav nav-main'} %}
+    {% endif %}
+    {% if item.hasChildren and options.depth is not same as(0) and item.displayChildren %}
+        {% import 'knp_menu.html.twig' as knp_menu %}
+        {% set listAttributes = listAttributes|merge(ulClass) %}
+        <ul{{ knp_menu.attributes(listAttributes) }}>
+            {{ block('children') }}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block item %}
+    {% if item.displayed %}
+        {# building the class of the item #}
+        {%- set classes = item.attribute('class') is not empty ? [item.attribute('class')] : [] %}
+        {%- if matcher.isCurrent(item) %}
+            {%- set classes = classes|merge([options.currentClass]) %}
+        {%- elseif matcher.isAncestor(item, options.matchingDepth) %}
+            {%- set classes = classes|merge([options.ancestorClass]) %}
+        {%- endif %}
+        {%- if item.actsLikeFirst %}
+            {%- set classes = classes|merge([options.firstClass]) %}
+        {%- endif %}
+        {%- if item.actsLikeLast %}
+            {%- set classes = classes|merge([options.lastClass]) %}
+        {%- endif %}
+
+        {# Mark item as "leaf" (no children) or as "branch" (has children that are displayed) #}
+        {% if item.hasChildren and options.depth is not same as(0) %}
+            {% if options.branch_class is not empty and item.displayChildren %}
+                {%- set classes = classes|merge([options.branch_class]) %}
+            {% endif %}
+        {% elseif options.leaf_class is not empty %}
+            {%- set classes = classes|merge([options.leaf_class]) %}
+        {%- endif %}
+
+        {%- set attributes = item.attributes %}
+        {%- if classes is not empty %}
+            {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
+        {%- endif %}
+        {# displaying the item #}
+        {% import 'knp_menu.html.twig' as knp_menu %}
+        <li{{ knp_menu.attributes(attributes) }}>
+            {%- if (item.uri is not empty or item.hasChildren) and (not matcher.isCurrent(item) or options.currentAsLink) %}
+                {{ block('linkSpanElement') }}
+            {%- else %}
+                {{ block('linkElement') }}
+            {%- endif %}
+            {# render the list of children#}
+            {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
+            {%- set childrenClasses = childrenClasses|merge(['menu_level_' ~ item.level]) %}
+            {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
+            {{ block('list') }}
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block linkSpanElement %}
+    {% import 'knp_menu.html.twig' as knp_menu %}
+    {% set itemAttributes = item.linkAttributes|merge({'class': 'nav-link'}) %}
+    {% if item.uri is not empty %}
+        {% set uri = item.uri %}
+    {% else %}
+        {% set uri = '#' %}
+    {% endif %}
+    <a href="{{ uri }}"{{ knp_menu.attributes(itemAttributes) }}>{{ block('labelSpan') }}</a>
+{% endblock %}
+
+{% block linkElement %}
+    {% import 'knp_menu.html.twig' as knp_menu %}
+    {% set itemAttributes = item.linkAttributes|merge({'class': 'nav-link'}) %}
+    <a href="{{ item.uri }}"{{ knp_menu.attributes(itemAttributes) }}>{{ block('label') }}</a>
+{% endblock %}
+
+{% block label %}
+    {% if item.labelAttributes.icon is defined %}
+        <i class="{{ item.labelAttributes.icon }}" aria-hidden="true"></i>
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block labelSpan %}
+    {% if item.labelAttributes.icon is defined %}
+        <i class="{{ item.labelAttributes.icon }}" aria-hidden="true"></i>
+    {% endif %}
+    <span>{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|trans|raw }}{% else %}{{ item.label|trans|raw }}{% endif %}</span>
+{% endblock %}

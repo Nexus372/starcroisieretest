@@ -1,0 +1,73 @@
+{% extends 'admin/common/components/form_create.html.twig' %}
+
+{% block title %}{{ parent() }} - Posts - {{ entity.title }}{% endblock %}
+{% block page_title %}Posts{% endblock %}
+
+{% block back_route %}{{ path('app_admin_posts') }}{% endblock %}
+
+{% block portlet_title %}Edition d'un post : {{ entity.title }}{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+
+    <section class="card">
+
+        <header class="card-header">
+            <h2 class="card-title">Commentaires</h2>
+        </header>
+
+        <div class="card-body">
+            <table class="table table-sm table-bordered table-striped simpleDataTable">
+                <thead>
+                <tr>
+                    <th data-column-width="15%">{{ 'N°'|trans }}</th>
+                    <th data-column-width="15%">{{ 'Auteur'|trans }}</th>
+                    <th data-column-width="40%">{{ 'Commentaire'|trans }}</th>
+                    <th data-column-width="15%">{{ 'Date de création'|trans }}</th>
+                    <th data-column-width="15%">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for comment in entity.comments %}
+                    <tr>
+                        <td>{{ comment.id }}</td>
+                        <td>{{ comment.author }}</td>
+                        <td>{{ comment.content|raw }}</td>
+                        <td>{{ comment.createdAt|date('d/m/Y H:i') }}</td>
+                        <td>
+                            <a href="#modalSimpleDelete" data-href="{{ path('app_admin_comment_delete', {post: entity.id, comment: comment.id}) }}" class="on-default modal-delete-row" data-toggle="tooltip" data-placement="top" title="Supprimer"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+    <div id="modalSimpleDelete" class="zoom-anim-dialog modal-block modal-block-primary mfp-hide">
+        <section class="card">
+            <header class="card-header">
+                <h2 class="card-title">Etes-vous sur ?</h2>
+            </header>
+            <div class="card-body">
+                <div class="modal-wrapper">
+                    <div class="modal-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <div class="modal-text">
+                        <p>Etes vous sur de vouloir supprimer ce post ?</p>
+                    </div>
+                </div>
+            </div>
+            <footer class="card-footer">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button class="btn btn-primary modal-confirm">Oui</button>
+                        <button class="btn btn-default modal-dismiss">Non</button>
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'admin/common/crud.html.twig' %}
+
+{% block content %}
+
+    <section class="card">
+
+        <header class="card-header">
+            <h2 class="card-title">{% block portlet_title %}{% endblock %}</h2>
+
+            <div class="card-actions">
+                <button type="link" href="{% block back_route %}{% endblock %}" class="btn btn-sm btn-default"><i class="fas fa-arrow-left"></i> Retour</button>
+            </div>
+        </header>
+
+        <div class="card-body">
+            {% block form_content %}
+                {{ form(form) }}
+            {% endblock %}
+        </div>
+
+        <footer class="card-footer">
+            <div class="row justify-content-end">
+                <div class="col-sm-9">
+                    <button type="submit" data-form-name="{{ form.vars.name }}" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </div>
+        </footer>
+
+    </section>
+
+{% endblock %}

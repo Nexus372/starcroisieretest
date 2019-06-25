@@ -1,0 +1,262 @@
+<html class="side-header history svg video supports boxshadow csstransforms3d csstransitions backgroundcliptext webkit chrome win js sticky-header-enabled"><head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Porto - Responsive HTML5 Template 7.1.0</title>
+
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Porto - Responsive HTML5 Template">
+    <meta name="author" content="okler.net">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('front') }}
+
+        <link rel="stylesheet" href="{{ asset('build/rs-plugin/css/settings.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/rs-plugin/css/layers.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/rs-plugin/css/navigation.css') }}">
+    {% endblock %}
+
+</head>
+<body class="" data-loading-overlay="" data-plugin-options="{'hideDelay': 500}">
+<div class="loading-overlay">
+    <div class="bounce-loader">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+
+<div class="body">
+    <div class="pin-wrapper position-absolute w-100" style="height: 0px;"><div class="sticky-wrapper sticky-wrapper-transparent sticky-wrapper-effect-1 sticky-wrapper-border-bottom d-none d-lg-block d-xl-none" data-plugin-sticky="" data-plugin-options="{'minWidth': 0, 'stickyStartEffectAt': 100, 'padding': {'top': 0}}" style="width: 0px;">
+            <div class="sticky-body">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <div class="py-4">
+                                <a href="index.html">
+                                    <img class="ml-2" alt="Porto" width="82" height="40" data-change-src="{{ asset('build/images/logo.png') }}" src="{{ asset('build/images/logo.png') }}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-3 text-right">
+                            <button class="hamburguer-btn hamburguer-btn-light hamburguer-btn-sticky-dark" data-set-active="false">
+									<span class="hamburguer">
+										<span></span>
+										<span></span>
+										<span></span>
+									</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></div>
+
+    <header id="header" class="side-header d-flex" style="min-height: 0px;">
+        <div class="header-body" style="top: 0px;">
+            <div class="header-container container d-flex h-100">
+                <div class="header-column flex-row flex-lg-column justify-content-center h-100">
+                    <div class="header-row flex-row justify-content-start justify-content-lg-center py-lg-5">
+                        <div class="header-logo">
+                            <a href="index.html">
+                                <img alt="Porto" width="100" height="48" src="{{ asset('build/images/logo.png') }}">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="header-row header-row-side-header flex-row h-100 pb-lg-5">
+                        <div class="header-nav header-nav-links header-nav-links-side-header header-nav-links-vertical header-nav-links-vertical-columns align-self-center">
+                            <div class="header-nav-main header-nav-main-square header-nav-main-dropdown-no-borders">
+                                <nav class="collapse">
+                                    <ul class="nav nav-pills" id="mainNav">
+                                        <li>
+                                            <a class="dropdown-item active" href="/">
+                                                Home
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ path('app_admin_posts') }}">
+                                                Admin
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-row justify-content-end pb-lg-3">
+                        <ul class="header-social-icons social-icons d-none d-sm-block social-icons-clean d-sm-0">
+                            <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                            <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+                        </ul>
+                        <p class="d-none d-lg-block text-1 pt-3">© 2018 PORTO. All rights reserved</p>
+                        <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main nav">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div role="main" class="main">
+
+        <section class="section border-0 m-0 py-3 py-lg-5">
+
+            <div class="container py-md-4">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="blog-posts recent-posts">
+
+                            <div class="masonry row" data-plugin-masonry="" data-plugin-options="{'itemSelector': '.masonry-item'}" style="position: relative; height: 4351.35px;">
+
+                                {% for post in posts %}
+
+                                <div class="masonry-item no-default-style col-md-6" style="position: absolute; left: 0px; top: 0px;">
+                                    <article class="post post-medium border-0 pb-0 mb-5">
+                                        <div class="post-image">
+                                            <a href="blog-post.html">
+                                                <img src="{{ asset('/upload/' ~ post.filename) }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0 w-100" alt="">
+                                                <div class="date p-absolute z-index-2 top-10 right-10 mr-0 mr-3 pl-1 pt-1">
+                                                    <span class="day bg-color-light font-weight-extra-bold py-2 text-color-dark">{{ post.createdAt|date('d') }}</span>
+                                                    <span class="month text-1 bg-color-light line-height-9 text-default w-100 top-2 d-block py-0"><span class="text-1">{{ post.createdAt|date('M')|upper }}</span></span>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="post-content bg-color-light p-4">
+
+                                            <h2 class="font-weight-bold text-5 line-height-6 mt-0 mb-2"><a href="blog-post.html">{{ post.title }}</a></h2>
+                                            {{ post.content|raw }}
+
+                                            <div class="post-meta m-0 p-0">
+                                                <span><i class="far fa-user"></i> Par Admin </span>
+                                                <span><i class="far fa-comments"></i> <a href="#">{{ post.comments|length }} Commentaire(s)</a></span>
+                                                <span class="d-block mt-2"><a href="{{ path('app_post_view', {id: post.id}) }}" class="btn btn-xs btn-light text-1 text-uppercase">Voir</a></span>
+                                            </div>
+
+                                        </div>
+                                    </article>
+                                </div>
+
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <footer id="footer" class="m-0">
+        <div class="container py-5">
+            <div class="row py-5 my-4">
+                <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+                    <h5 class="text-3 mb-3">ABOUT THE BLOG</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu pulvinar magna semper scelerisque.</p>
+                    <p class="mb-0">Praesent venenatis turpis vitae purus semper, eget sagittis velit venenatis ptent taciti sociosqu ad litora...</p>
+                    <p class="mb-0"><a href="#" class="btn-flat btn-xs text-color-light p-relative top-5"><strong class="text-2">VIEW MORE</strong><i class="fas fa-angle-right p-relative top-1 pl-2"></i></a></p>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
+                    <h5 class="text-3 mb-3">RECENT POSTS</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="media mb-3 pb-1">
+                            <a href="#">
+                                <img class="mr-3 rounded-circle" src="img/office/our-office-4-square.jpg" alt="" style="max-width: 70px;">
+                            </a>
+                            <div class="media-body">
+                                <a href="#">
+                                    <p class="text-3 text-color-light opacity-8 mb-1">Lorem ipsum dolor sit, consectetur adipiscing elit.</p>
+                                    <p class="text-2 mb-0">12:53 AM Dec 19th</p>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <a href="#">
+                                <img class="mr-3 rounded-circle" src="img/office/our-office-5-square.jpg" alt="" style="max-width: 70px;">
+                            </a>
+                            <div class="media-body">
+                                <a href="#">
+                                    <p class="text-3 text-color-light opacity-8 mb-1">Lorem ipsum dolor sit, consectetur adipiscing elit.</p>
+                                    <p class="text-2 mb-0">12:53 AM Dec 19th</p>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-5 mb-md-0">
+                    <h5 class="text-3 mb-3">RECENT COMMENTS</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-3 pb-1">
+                            <a href="#">
+                                <p class="text-3 text-color-light opacity-8 mb-1"><i class="fas fa-angle-right text-color-primary"></i><strong class="ml-2">John Doe</strong> commented on <strong class="text-color-primary">lorem ipsum dolor sit amet.</strong></p>
+                                <p class="text-2 mb-0">12:55 AM Dec 19th</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <p class="text-3 text-color-light opacity-8 mb-1"><i class="fas fa-angle-right text-color-primary"></i><strong class="ml-2">John Doe</strong> commented on <strong class="text-color-primary">lorem ipsum dolor sit amet.</strong></p>
+                                <p class="text-2 mb-0">12:55 AM Dec 19th</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <h5 class="text-3 mb-3">TAGS</h5>
+                    <p>
+                        <a href="#"><span class="badge badge-dark bg-color-black badge-sm py-2 mr-1 mb-2">DESIGN</span></a>
+                        <a href="#"><span class="badge badge-dark bg-color-black badge-sm py-2 mr-1 mb-2">CODE</span></a>
+                        <a href="#"><span class="badge badge-dark bg-color-black badge-sm py-2 mr-1 mb-2">LIFESTYLE</span></a>
+                        <a href="#"><span class="badge badge-dark bg-color-black badge-sm py-2 mr-1 mb-2">BRANDS</span></a>
+                        <a href="#"><span class="badge badge-dark bg-color-black badge-sm py-2 mr-1 mb-2">PROMO</span></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="bg-color-dark-scale-2 pt-3">
+        <div class="container py-2">
+            <div class="row py-4">
+                <div class="col text-center">
+                    <ul class="footer-social-icons social-icons social-icons-clean social-icons-icon-light mb-3 mt-2">
+                        <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
+                    <p class="text-1"><strong>PORTO TEMPLATE</strong> - © Copyright 2018. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('front') }}
+
+    <script src="{{ asset('build/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script>
+    <script src="{{ asset('build/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>

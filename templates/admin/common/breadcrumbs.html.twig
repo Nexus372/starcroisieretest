@@ -1,0 +1,26 @@
+<header class="page-header">
+    <h2>{{ page_title }}</h2>
+
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs{% if not is_granted('ROLE_SUPER_ADMIN') %} mr-4{% endif %}">
+            <li>
+                <a href="{{ path('app_admin_posts') }}">
+                    <i class="gi gi-white-house"></i>
+                </a>
+            </li>
+            {% for breadcrumb_item in knp_menu_get_breadcrumbs_array(knp_menu_get_current_item('main')) %}
+                {% if breadcrumb_item.label is not same as("root") %}
+                    {% if not loop.last %}
+                        <li><a href="{{ breadcrumb_item.uri }}">{{ breadcrumb_item.label }}</a></li>
+                    {% else %}
+                        <li><span>{{ breadcrumb_item.label|raw }}</span></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </ol>
+
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+            <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
+        {% endif %}
+    </div>
+</header>

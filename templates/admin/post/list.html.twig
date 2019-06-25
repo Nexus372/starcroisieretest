@@ -1,0 +1,76 @@
+{% extends 'admin/common/crud.html.twig' %}
+{% trans_default_domain 'admin' %}
+
+{% block title %}{{ parent() }} - Posts{% endblock %}
+{% block page_title %}Posts{% endblock %}
+{% block portlet_title %}Posts{% endblock %}
+
+{% block content %}
+
+    <section class="card">
+
+        <header class="card-header">
+            <h2 class="card-title">Posts</h2>
+
+            <div class="card-actions">
+                <button type="link" href="{{ path('app_admin_post_create') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Ajouter</button>
+            </div>
+
+        </header>
+
+        <div class="card-body">
+            <table class="table table-sm table-bordered table-striped simpleDataTable">
+                <thead>
+                <tr>
+                    <th data-column-width="15%">{{ 'N°'|trans }}</th>
+                    <th data-column-width="40%">{{ 'Titre'|trans }}</th>
+                    <th data-column-width="15%">{{ 'Auteur'|trans }}</th>
+                    <th data-column-width="15%">{{ 'Date de création'|trans }}</th>
+                    <th data-column-width="15%">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.createdBy }}</td>
+                        <td>{{ post.createdAt|date('d/m/Y H:i') }}</td>
+                        <td>
+                            <a href="{{ path('app_admin_post_update', {id: post.id}) }}" class="on-default edit-row" data-toggle="tooltip" data-placement="top" title="Editer"><i class="fas fa-pencil-alt"></i></a> &nbsp;
+                            <a href="#modalSimpleDelete" data-href="{{ path('app_admin_post_delete', {id: post.id}) }}" class="on-default modal-delete-row" data-toggle="tooltip" data-placement="top" title="Supprimer"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <div id="modalSimpleDelete" class="zoom-anim-dialog modal-block modal-block-primary mfp-hide">
+        <section class="card">
+            <header class="card-header">
+                <h2 class="card-title">Etes-vous sur ?</h2>
+            </header>
+            <div class="card-body">
+                <div class="modal-wrapper">
+                    <div class="modal-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <div class="modal-text">
+                        <p>Etes vous sur de vouloir supprimer ce post ?</p>
+                    </div>
+                </div>
+            </div>
+            <footer class="card-footer">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button class="btn btn-primary modal-confirm">Oui</button>
+                        <button class="btn btn-default modal-dismiss">Non</button>
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </div>
+
+{% endblock %}

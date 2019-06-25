@@ -1,0 +1,75 @@
+<!-- start: header -->
+<header class="header">
+    <div class="logo-container">
+        <a href="/staff" class="logo">
+            <img src="{{ asset('build/images/logo_lspd.png') }}" width="80" height="40" alt="Porto Admin" />
+        </a>
+        <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+            <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+        </div>
+    </div>
+
+    <!-- start: search & user box -->
+    <div class="header-right">
+
+        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+            <a class="btn btn-danger" href="{{ path('lspd_staff_index', {'_switch_user': '_exit'}) }}"><i class="fas fa-power-off"></i> Se déconnecter de {{ app.user.fullName }}</a>
+            <span class="separator"></span>
+        {% endif %}
+
+        <form action="pages-search-results.html" class="search nav-form" style="width: 325px;">
+            <div class="input-group">
+                <input type="text" class="form-control search-box" name="q" id="q" placeholder="Rechercher...">
+                <span class="input-group-append">
+                    <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+        <ul class="search-result notifications">
+            <li class="show">
+                <div class="dropdown-menu notification-menu large" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-9px, 15px, 0px);">
+                    <div class="notification-title citizen-title">
+                        <span class="float-right badge badge-default"></span>
+                        Citoyens
+                    </div>
+                    <div class="content citizen-content"></div>
+
+                    <div class="notification-title user-title">
+                        <span class="float-right badge badge-default"></span>
+                        Effectifs
+                    </div>
+                    <div class="content user-content"></div>
+                </div>
+            </li>
+        </ul>
+
+
+        <span class="separator"></span>
+
+
+
+        <div id="userbox" class="userbox">
+            <a href="#" data-toggle="dropdown">
+                <figure class="profile-picture">
+                    <img src="{{ asset('build/images/no-photo-mini.jpg') }}" class="rounded-circle" data-lock-picture="{{ asset('build/images/no-photo.jpg') }}" />
+                </figure>
+                <div class="profile-info" data-lock-name="{{ app.user.fullName|default('user') }}">
+                    <span class="name">{{ app.user.fullName|default('user') }}</span>
+                </div>
+
+                <i class="fa custom-caret"></i>
+            </a>
+
+            <div class="dropdown-menu">
+                <ul class="list-unstyled mb-2">
+                    <li class="divider"></li>
+                    <li>
+                        <a role="menuitem" tabindex="-1" href=""><i class="fas fa-power-off"></i> Se déconnecter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end: search & user box -->
+</header>
+<!-- end: header -->
