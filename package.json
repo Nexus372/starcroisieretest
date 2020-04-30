@@ -26,7 +26,7 @@
         "imports-loader": "^0.8.0",
         "instafeed.js": "^1.4.1",
         "isotope-layout": "^3.0.6",
-        "jquery": "^3.3.1",
+        "jquery": "^3.5.0",
         "jquery-countdown": "^2.2.0",
         "jquery-form": "^4.2.2",
         "jquery-gmap": "^2.1.1",
