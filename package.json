@@ -14,7 +14,7 @@
         "bootstrap-colorpicker": "^3.1.2",
         "bootstrap-datepicker": "^1.8.0",
         "bootstrap-select": "^1.13.5",
-        "codemirror": "^5.43.0",
+        "codemirror": "^5.58.2",
         "core-js": "2",
         "datatables": "^1.10.18",
         "datatables.net-bs4": "^1.10.19",
